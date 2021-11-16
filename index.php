@@ -1,4 +1,29 @@
+<?php 
+require "dbBroker.php";
+require "prijava.php";
 
+session_start();
+if(!isset($_SESSION['id'])) {
+    header('Location: register.php');
+    exit();
+}
+
+$rezultat=Prijava::getAll($conn);
+
+if(!$rezultat) {
+    echo "Greska";
+    die();
+}
+
+if($rezultat->num_rows==0) {
+    echo "Nema prijava";
+    die();
+}
+else {
+    
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,7 +136,40 @@
     </div>
 
     <!--two column section-->
+    <article class="index-table">
+        <div class="container">
+            <div class="table-responsive">
+            <table class="table table-bordered table-hover" style="background-color: #a696ce; text-align: center;">
+            <tr>
+                <th>Kurs</th>
+                <th>Profesor</th>
+                <th>Cena</th>
+            </tr>
+            <?php 
+            while($row=$rezultat->fetch_array()):
+            ?>
+            <tr>
+                <td><?php echo $row["kurs"] ?></td>
+                <td><?php echo $row["profesor"] ?></td>
+                <td><?php echo $row["cena"] ?></td>
+                <td>
+                <label class="custom-radio-btn">
+                <input type="radio" name="checked-donut" value=<?php echo $row["id"] ?>>
+                <span class="checkmark"></span>
+                </label>
+                </td>
+            </tr>
+            <?php
+            endwhile;
+        }
+            ?>
+        </table>
+            </div>
+        </div>
+        
 
+
+    </article>
 
     <!-- fixed background-->
     <figure>
