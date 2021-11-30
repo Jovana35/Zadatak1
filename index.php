@@ -11,19 +11,18 @@ if(!isset($_SESSION['id'])) {
 $rezultat=Prijava::getAll($conn);
 
 if(!$rezultat) {
-    echo "Greska";
+    echo "Greška.";
     die();
 }
 
 if($rezultat->num_rows==0) {
-    echo "Nema prijava";
+    echo "Još uvek nema prijavljenih korisnika.";
     die();
 }
 else {
-    
-
-
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,6 +61,8 @@ else {
             </div>
         </div>
     </nav>
+
+
     <!--image slider-->
     <div id="slides" class="carousel slide" data-ride="carousel">
         <ul class="carousel-indicators">
@@ -87,6 +88,8 @@ else {
             </div>
         </div>
     </div>
+
+
     <!--jumbotron-->
     <div class="container-fluid">
         <div class="row jumbotron">
@@ -113,7 +116,7 @@ else {
         </div>
     </div>
 
-    <!--three column section-->
+    <!--courses section-->
     <div class="container-fluid padding">
         <div class="row text-center padding">
             <div class="col-xs-12 col-sm-6 col-md-4">
@@ -135,7 +138,7 @@ else {
         <hr class="my-4">
     </div>
 
-    <!--two column section-->
+    <!--table section-->
     <article class="index-table">
         <div class="container">
             <div class="table-responsive">
@@ -169,7 +172,7 @@ else {
        
     </article>
 
-    <!-- Trigger the modal with a button -->
+    <!-- Choose section-->
     <div class="container-fluid padding">
         <div class="row text-center paading">
             <div class="col-12">
@@ -183,12 +186,11 @@ else {
             </div>
         </div>
     </div>
-<!-- Modal -->
 
+<!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
+    <!-- Modal sadrzaj-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -219,8 +221,8 @@ else {
                             </div>
                         </form>
                     </div>
-    </div>
-      </div>
+                </div>
+             </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
@@ -273,6 +275,8 @@ else {
         </div>
 
     </div>
+
+
     <!-- fixed background-->
     <figure>
         <div class="fixed-wrap">
@@ -326,7 +330,9 @@ else {
             </div>
         </div>
     </div>
-    <!--two column section-->
+
+
+    <!--philosophy-->
     <div class="container-fluid padding">
         <div class="row padding">
             <div class="col-md-12 col-lg-6">
