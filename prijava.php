@@ -17,16 +17,16 @@ class Prijava {
         return $conn->query($query);
     }
 
-    public static function getbyid($id, mysqli $conn) {
+    public static function getbyId($id, mysqli $conn) {
         $query="SELECT * FROM prijave WHERE id=$id";
-        $myArray=array();
-        $rezultat=$conn->query($query);
-        if($rezultat) {
-            while($row=$rezultat->fetch_array()) {
-                $myArray[]=$row;
+        $objekat = array();
+        if($sqlObjekat = $conn->query($query)){
+            while($red = $sqlObjekat->fetch_array(1)){
+                $objekat[]= $red;
             }
         }
-        return $myArray;
+
+    return $objekat;
     }
 
     public function deletebyid(mysqli $conn) {
@@ -39,8 +39,8 @@ class Prijava {
         return $conn->query($query);
     }
 
-    public function update(mysqli $conn) {
-        $query="UPDATE prijave set kurs='$this->kurs, profesor='$this->profesor', cena=$this->cena";
+    public static function update(Prijava $novaPrijava, mysqli $conn) {
+        $query="UPDATE prijave set kurs='$novaPrijava->kurs', profesor='$novaPrijava->profesor', cena='$novaPrijava->cena' WHERE id='$novaPrijava->id'";
         return $conn->query($query);
     }
 }
