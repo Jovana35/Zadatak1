@@ -141,9 +141,9 @@ else {
             <div class="table-responsive">
             <table class="table table-bordered table-hover" style="background-color: #a696ce; text-align: center;">
             <tr>
-                <th>Kurs</th>
-                <th>Profesor</th>
-                <th>Cena</th>
+                <th>Course</th>
+                <th>Teacher</th>
+                <th>Price</th>
             </tr>
             <?php 
             while($row=$rezultat->fetch_array()):
@@ -166,11 +166,113 @@ else {
         </table>
             </div>
         </div>
-        
-
-
+       
     </article>
 
+    <!-- Trigger the modal with a button -->
+    <div class="container-fluid padding">
+        <div class="row text-center paading">
+            <div class="col-12">
+                <h3>Choose</h3>
+            </div>
+            <div class="col-12 padding">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add new course</button>
+    <button id="delete" formmethod="post" class="btn btn-danger">Delete selected course</button>
+    <button id="izmeni" class="btn btn-warning" data-toggle="modal" data-target="#myModal1">Update selected course</button>
+
+            </div>
+        </div>
+    </div>
+<!-- Modal -->
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+
+      <div class="container prijava-form">
+                        <form action="#" method="post" id="add">
+                            <h3 style="color: black; text-align: center">Add new course</h3>
+                            <div class="row">
+                                <div class="col-md-11 ">
+                                    <div class="form-group">
+                                        <label for="">Course</label>
+                                        <input type="text" style="border: 1px solid black" name="course"  class="form-control" placeholder="Enter course name."/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Teacher</label>
+                                        <input type="text" style="border: 1px solid black" name="teacher"  class="form-control" placeholder="Enter teacher's name."/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Price</label>
+                                        <input type="text" style="border: 1px solid black" name="price"  class="form-control" placeholder="Enter price."/>
+                                    </div>
+                                    <div class="form-group">
+                                        <button id="btnAdd" type="submit" class="btn btn-success btn-block" tyle="background-color: purple; border: 1px solid black;">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal1" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal sadrzaj-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container prijava-form">
+                        <form action="#" method="post" id="update">
+                            <h3 style="color: black">Update course</h3>
+                            <div class="row">
+                                <div class="col-md-11 ">
+                                <div class="form-group">
+                                        <input id="id" type="text" name="id" class="form-control" placeholder="Id" value="" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="course" type="text" name="course" class="form-control" placeholder="Course" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="teacher" type="text" name="teacher" class="form-control" placeholder="Teacher" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="price" type="text" name="price" class="form-control" placeholder="Price" value="" />
+                                    </div>
+                                    
+                                        <button id="btnUpdate" type="submit" class="btn btn-success btn-block" tyle="background-color: purple; border: 1px solid black;">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
     <!-- fixed background-->
     <figure>
         <div class="fixed-wrap">
@@ -299,11 +401,11 @@ else {
         </div>
     </footer>
 
-
-    <script src="https://kit.fontawesome.com/9b02447dda.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9b02447dda.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
