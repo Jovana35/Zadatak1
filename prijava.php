@@ -29,7 +29,7 @@ class Prijava {
     return $objekat;
     }
 
-    public function deletebyid(mysqli $conn) {
+    public function deletebyId(mysqli $conn) {
         $query="DELETE FROM prijave WHERE id=$this->id";
         return $conn->query($query);
     }
