@@ -14,12 +14,12 @@ $('#add').submit(function(event){
         data: serijalizacija
     });
 
-    //res može da bude success ili failed
+    
     req.done(function(res){
         if(res=="Success"){
             alert("New course is added.");
             location.reload(true);
-        }else console.log("Kurs nije dodat "+res);
+        }else console.log("New course is not added "+res);
         console.log(res);
     });
 
@@ -46,8 +46,8 @@ $('#delete').click(function(){
            alert('Course is deleted.');
            console.log('Deleted');
         }else {
-        console.log("Not deleted "+res);
-        alert("Course is not deleted");
+        console.log("Course is not deleted "+res);
+        alert("Not deleted");
 
         }
         console.log(res);
@@ -72,13 +72,10 @@ $('#izmeni').click(function (event) {
     request.done(function (response) {
         console.log('Popunjena');
         $('#course').val(response[0]['kurs']);
-        console.log(response[0]['kurs']);
 
         $('#teacher').val(response[0]['profesor'].trim());
-        console.log(response[0]['profesor'].trim());
 
         $('#price').val(response[0]['cena'].trim());
-        console.log(response[0]['cena'].trim());
 
         $('#id').val(checked.val().trim());
 
@@ -86,7 +83,7 @@ $('#izmeni').click(function (event) {
     });
 
    request.fail(function (textStatus, errorThrown) {
-       console.error('The following error occurred: ' + textStatus, errorThrown);
+       console.error('Error: ' + textStatus, errorThrown);
    });
 
    
@@ -101,7 +98,7 @@ $('#update').submit(function (event) {
     console.log(serializedData);
     $inputs.prop('disabled', true);
 
-    // kreirati request za UPDATE handler
+    
     request = $.ajax({
         url: 'update.php',
         type: 'post',
@@ -113,18 +110,19 @@ $('#update').submit(function (event) {
 
 
         if (response == "Success") {
-            console.log('Kurs je izmenjen');
+            console.log('Course is updated.');
             location.reload(true);
             $('#update').reset;
         }
-        else console.log('Kurs nije izmenjen ' + response);
+        else console.log('Course is not updated ' + response);
         console.log(response);
     });
 
     request.fail(function (textStatus, errorThrown) {
-        console.error('The following error occurred: ' + textStatus, errorThrown);
+        console.error('Error: ' + textStatus, errorThrown);
     });
 
 
+    //sakrij modal
     $('#update').modal('hide');
 });
