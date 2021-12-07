@@ -1,6 +1,6 @@
 <?php
-require "dbBroker.php";
-require "user.php";
+include "dbBroker.php";
+include "user.php";
 
 session_start();
 if(isset($_POST['firstname']) && isset($_POST['lastname']) &&
@@ -10,12 +10,12 @@ isset($_POST['email']) && isset($_POST['password'])) {
     $email=$_POST['email'];
     $password=$_POST['password'];
 
-    //$conn=new mysqli();
     $korisnik=new User(1, $firstname, $lastname, $email, $password);
     $odgovor=User::logIn($korisnik, $conn);    
 
+    //jedan red znači jedan korisnik
     if($odgovor->num_rows==1) {
-        echo `<script> console.log("Uspesno ste se prijavili"); </script>`;
+        //prima id korisnika koji je ulogovan
         $_SESSION['id']=$korisnik->id;
         header('Location: index.php');
         exit();
