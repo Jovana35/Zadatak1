@@ -17,7 +17,9 @@ public function __construct($id=null, $firstname=null, $lastname=null,$email=nul
 }
 public static function logIn($usr, mysqli $conn) {
 $query="SELECT * FROM users WHERE firstname='$usr->firstname' and lastname='$usr->lastname' and email='$usr->email' and password='$usr->password'";
-//konekcija sa bazom
+
+
+//ovde se povezujemo sa bazom
 return $conn->query($query);
 }
 }
