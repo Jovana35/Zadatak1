@@ -1,7 +1,7 @@
-$('#add').submit(function(){
+$('#add').submit(function(event){
     event.preventDefault();
-    const $form =$(this);
-    const $input = $form.find('input, select, button, textarea');
+    const $form = $(this);
+    const $input = $form.find('input, button');
 
     const serijalizacija = $form.serialize();
     console.log(serijalizacija);
@@ -14,7 +14,8 @@ $('#add').submit(function(){
         data: serijalizacija
     });
 
-    req.done(function(res, textStatus, jqXHR){
+    //res može da bude success ili failed
+    req.done(function(res){
         if(res=="Success"){
             alert("New course is added.");
             location.reload(true);
@@ -22,7 +23,9 @@ $('#add').submit(function(){
         console.log(res);
     });
 
-    req.fail(function(jqXHR, textStatus, errorThrown){
+    req.fail(function(textStatus, errorThrown){
+        //textStatus opisuje tip greške koja se dogodila
+        //errorThrown opcioni objekat izuzetka
         console.error('Error> '+textStatus, errorThrown)
     });
 });
@@ -37,7 +40,7 @@ $('#delete').click(function(){
         data: {'id':checked.val()}
     });
 
-    req.done(function(res, textStatus, jqXHR){
+    req.done(function(res){
         if(res=="Success"){
            checked.closest('tr').remove();
            alert('Course is deleted.');
@@ -53,7 +56,8 @@ $('#delete').click(function(){
 });
 
 // dugme koje je na glavnoj formi i otvara dijalog za izmenu
-$('#izmeni').click(function () {
+$('#izmeni').click(function (event) {
+    event.preventDefault();
     const checked = $('input[name=checked-donut]:checked');
     //pristupa informacijama te konkretne forme i popunjava dijalog
     request = $.ajax({
@@ -65,7 +69,7 @@ $('#izmeni').click(function () {
     });
 
 
-    request.done(function (response, textStatus, jqXHR) {
+    request.done(function (response) {
         console.log('Popunjena');
         $('#course').val(response[0]['kurs']);
         console.log(response[0]['kurs']);
@@ -81,18 +85,18 @@ $('#izmeni').click(function () {
         console.log(response);
     });
 
-   request.fail(function (jqXHR, textStatus, errorThrown) {
+   request.fail(function (textStatus, errorThrown) {
        console.error('The following error occurred: ' + textStatus, errorThrown);
    });
 
    
 });
-$('#update').submit(function () {
+$('#update').submit(function (event) {
     event.preventDefault();
     //serijalizacija
     console.log("Izmene");
     const $form = $(this);
-    const $inputs = $form.find('input, select, button, textarea');
+    const $inputs = $form.find('input, button');
     const serializedData = $form.serialize();
     console.log(serializedData);
     $inputs.prop('disabled', true);
@@ -105,7 +109,7 @@ $('#update').submit(function () {
       
     });
 
-    request.done(function (response, textStatus, jqXHR) {
+    request.done(function (response) {
 
 
         if (response == "Success") {
@@ -117,7 +121,7 @@ $('#update').submit(function () {
         console.log(response);
     });
 
-    request.fail(function (jqXHR, textStatus, errorThrown) {
+    request.fail(function (textStatus, errorThrown) {
         console.error('The following error occurred: ' + textStatus, errorThrown);
     });
 
